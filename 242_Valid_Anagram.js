@@ -1,21 +1,27 @@
-var isAnagram = function(s, t) {
-    let letterCount1 = {};
+const s1 = "aacc";
+const t1 = "ccac";
+
+const isAnagram = function(s, t) {
+    if (s.length !== t.length) return false;
+    let letterCount = {};
     for (let i = 0; i<s.length; i++) {
-        if (letterCount1[s[i]]) {
-            letterCount1[s[i]] += 1;
+        if (letterCount[s[i]]) {
+            letterCount[s[i]] += 1;
         }
-        else {letterCount1[s[i]] = 0};
+        else {letterCount[s[i]] = 1};
     }
-    for (let j = 0; j<t.length; t++) {
-        if (letterCount1[t[j]]) {
-            letterCount1[t[j]] += -1;
-            if (letterCount1[t[j]] < 0) {
-                return false;
-            }
+    console.log(letterCount);
+    console.log(t.length);
+    for (let j = 0; j<t.length; j++) {
+        if (letterCount[t[j]]) {
+            letterCount[t[j]] += -1;
+            if (letterCount[t[j]] < 0) return false;
         }
-        else if (!letterCount1[t[j]]) {
+        else {
             return false;
         }
     }
     return true;
 };
+
+console.log(isAnagram(s1, t1));
